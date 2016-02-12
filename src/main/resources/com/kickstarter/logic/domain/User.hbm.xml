@@ -11,6 +11,9 @@
         <property name="email" type="java.lang.String">
             <column name="Email" length="45" not-null="true" />
         </property>
+        <property name="userName" type="java.lang.String">
+            <column name="UserName" length="45" not-null="true" />
+        </property>
         <property name="firstName" type="java.lang.String">
             <column name="FirstName" length="45" not-null="true" />
         </property>

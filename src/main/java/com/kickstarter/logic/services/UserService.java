@@ -20,7 +20,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void RegisterUser(User user) throws Exception {
+    public void registerUser(User user) throws Exception {
         User existingUser = getUserByName(user.getUserName());
         if (existingUser != null){
             throw new UserAlreadyExistsException(user.getUserName());
@@ -28,7 +28,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User LoginUser(String userName, String password) throws Exception{
+    public User loginUser(String userName, String password) throws Exception{
         User existingUser = getUserByName(userName);
         if(existingUser == null){
             throw new UserLoginException();
