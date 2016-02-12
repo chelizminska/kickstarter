@@ -1,0 +1,14 @@
+﻿<div class="form-group"
+     ng-class="{ 'has-error': inputReference.$touched && inputReference.$invalid }">
+    <div class="col-sm-12">
+	    <label class="control-label col-sm-3">{{::label}}</label>
+	    <div ng-transclude class="col-sm-6"></div>    
+    </div>
+    <div class="col-sm-offset-3 col-sm-6 input-errors help-block">
+	    <div class="col-sm-12 col-xs-12 col-md-12"
+	    	 ng-messages="inputReference.$error"
+	         ng-show="inputReference.$touched && inputReference.$invalid">
+	        <div ng-messages-include="error-messages"></div>
+	    </div>
+	</div>
+</div>

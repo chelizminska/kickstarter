@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+                <h2>Log in</h2>
+                <div class="server-errors">
+                    <span class="error-text">{{ serverError }}</span>
+                </div>
+                <form name="userForm" class="form-horizontal" novalidate role="form">
+
+                        <input-wrapper input-reference="userForm.userName" label="Name">
+                            <input ng-model="user.UserName" type="text" class="form-control" name="userName"
+                                       required xss ng-maxlength="50" />
+                        </input-wrapper>
+
+                        <input-wrapper input-reference="userForm.password" label="Password">
+                            <input ng-model="user.Password" type="password" class="form-control" name="password"
+                                       required xss ng-maxlength="50" />
+                        </input-wrapper>
+
+                    <button type="submit" class="btn btn-primary" ng-disabled="isSubmitting" ng-click="login(user)">Ok</button>
+                </form>
+        </div>
+    </div>
+</div>
