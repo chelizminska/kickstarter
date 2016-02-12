@@ -1,4 +1,6 @@
 import com.kickstarter.controllers.AccountController;
+import com.kickstarter.controllers.tools.CustomJsonResult;
+import com.kickstarter.controllers.tools.JsonResultModel;
 import com.kickstarter.logic.domain.User;
 import com.kickstarter.logic.services.IUserService;
 
@@ -8,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.internal.matchers.Null;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Matchers.*;
@@ -34,8 +37,11 @@ public class AccountControllerTest {
 
     @Test
     public void shouldLogoffUser(){
-        String result = accountController.Logoff();
+        CustomJsonResult result = accountController.Logoff();
+        JsonResultModel data = result.getData();
 
-        assertEquals(result, "index");
+        assertNotNull(data);
+        assertNull(data.getErrorMessage());
+        assertEquals(data.getData(), true);
     }
 }

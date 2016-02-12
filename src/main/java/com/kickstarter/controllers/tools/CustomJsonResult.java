@@ -1,16 +1,18 @@
-package com.kickstarter.controllers.Extentions;
+package com.kickstarter.controllers.tools;
 
+import com.kickstarter.extentions.Action;
+import com.kickstarter.extentions.Function;
 
 public class CustomJsonResult<TEntity> {
 
     private JsonResultModel<TEntity> data;
 
-    public static CustomJsonResult TryGetJsonResult(Object object, String methodName, Object... params)
+    public static <TEntity> CustomJsonResult TryGetJsonResult(Function<TEntity> function)
     {
         CustomJsonResult result = new CustomJsonResult();
         try
         {
-            result.SetData(object.getClass().getMethod(methodName).invoke(object, params));
+            result.SetData(function.getResult());
         }
         catch (Exception e)
         {
@@ -19,12 +21,12 @@ public class CustomJsonResult<TEntity> {
         return result;
     }
 
-    public static CustomJsonResult TryExecute(Object object, String methodName)
+    public static CustomJsonResult TryExecute(Action function)
     {
         CustomJsonResult result = new CustomJsonResult();
         try
         {
-            object.getClass().getMethod(methodName).invoke(object);
+            function.run();
             result.SetData(true);
         }
         catch (Exception e)

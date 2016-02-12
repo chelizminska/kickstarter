@@ -20,11 +20,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void registerUser(User user) throws Exception {
+    public User registerUser(User user) throws Exception {
         User existingUser = getUserByName(user.getUserName());
         if (existingUser != null){
             throw new UserAlreadyExistsException(user.getUserName());
         }
+
+        return null;
     }
 
     @Override

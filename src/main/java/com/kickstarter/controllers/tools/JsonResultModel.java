@@ -1,4 +1,4 @@
-package com.kickstarter.controllers.Extentions;
+package com.kickstarter.controllers.tools;
 
 public class JsonResultModel<TEntity> {
     private String errorMessage;
