@@ -3,11 +3,13 @@ package com.kickstarter.entitiesRepositories;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
+import sun.net.TelnetInputStream;
 
 import javax.annotation.Resource;
 import javax.persistence.Entity;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 @Transactional
 public abstract class RepositoryBase<TEntity> {
@@ -22,26 +24,19 @@ public abstract class RepositoryBase<TEntity> {
         this.typeParameterClass = typeParameterClass;
     }
 
+    @SuppressWarnings("unchecked")
     public TEntity getById(Integer id) {
         return (TEntity) sessionFactory
                 .openSession()
                 .get(typeParameterClass, id);
     }
 
-    public List getAll() {
-        return sessionFactory
+    @SuppressWarnings("unchecked")
+    public List<TEntity> getAll() {
+        return (List<TEntity>)sessionFactory
                 .openSession()
                 .createCriteria(typeParameterClass)
                 .list();
-    }
-
-    public TEntity getFirst(String propertyName, Object propertyValue) {
-        return  (TEntity) sessionFactory
-                .openSession()
-                .createCriteria(typeParameterClass)
-                .setFirstResult(0)
-                .setMaxResults(1)
-                .add(Restrictions.eq(propertyName, propertyValue));
     }
 
     public void add(TEntity entity) {

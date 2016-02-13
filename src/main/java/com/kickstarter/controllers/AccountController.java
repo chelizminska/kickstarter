@@ -24,7 +24,6 @@ public class AccountController {
     public CustomJsonResult Register(@Param UserRegistrationModel model) {
 
         User user = new User();
-        user.setUserName("fake_user");
         return CustomJsonResult
                 .TryGetJsonResult(() -> userService.registerUser(user));
     }

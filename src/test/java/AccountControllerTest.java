@@ -30,9 +30,8 @@ public class AccountControllerTest {
     @Before
     public void setUp(){
         user = new User();
-        user.setUserName("fake_user");
 
-        Mockito.when(userService.getUserByName(any(String.class))).thenReturn(user);
+        Mockito.when(userService.loadUserByUsername(any(String.class))).thenReturn(user);
     }
 
     @Test

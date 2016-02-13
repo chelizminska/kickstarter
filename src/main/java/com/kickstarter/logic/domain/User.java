@@ -1,13 +1,49 @@
 package com.kickstarter.logic.domain;
 
-public class User extends EntityBase {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+public class User extends EntityBase implements UserDetails {
 
     private String email;
-    private String userName;
+    private String username;
     private String firstName;
     private String lastName;
     private String password;
     private String salt;
+    private Role role;
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + this.getRole().getRoleName()));
+        return authorities;
+    }
 
     public String getEmail() {
         return email;
@@ -17,12 +53,12 @@ public class User extends EntityBase {
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
@@ -55,5 +91,13 @@ public class User extends EntityBase {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

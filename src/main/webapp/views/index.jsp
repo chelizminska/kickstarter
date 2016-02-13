@@ -1,8 +1,15 @@
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-  <title>Hello Spring MVC</title>
+  <jsp:include page="shared/staticFiles.jsp"/>
 </head>
-<body>
-<h2>${message}</h2>
-</body>
+
+  <body ng-app="app">
+    <div>
+      <div ui-view></div>
+    </div>
+  </body>
+
 </html>
