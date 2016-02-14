@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-  <jsp:include page="shared/staticFiles.jsp"/>
+  <jsp:include page="shared/componentsFiles.jsp"/>
 </head>
 
   <body ng-app="app">
@@ -12,4 +12,5 @@
     </div>
   </body>
 
+<jsp:include page="shared/appFiles.jsp"/>
 </html>

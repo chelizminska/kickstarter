@@ -12,7 +12,7 @@
             <column name="Email" length="45" not-null="true" unique="true"/>
         </property>
         <property name="username" type="java.lang.String">
-            <column name="Username" length="45" not-null="true" unique="true" />
+            <column name="UserName" length="45" not-null="true" unique="true" />
         </property>
         <property name="firstName" type="java.lang.String">
             <column name="FirstName" length="45" not-null="true" />
@@ -26,5 +26,8 @@
         <property name="salt" type="java.lang.String">
             <column name="Salt" length="45" not-null="true" />
         </property>
+        <many-to-one name="role" class="com.kickstarter.logic.domain.Role" fetch="select">
+            <column name="RoleId" not-null="true" default="1"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>

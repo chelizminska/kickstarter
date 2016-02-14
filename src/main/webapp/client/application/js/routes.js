@@ -1,7 +1,7 @@
 angular.module("app")
     .config([
-        "$stateProvider", "$urlRouterProvider", "appSettings", "appStates", "appUser",
-        function($stateProvider, $urlRouterProvider, appSettings, appStates, appUser) {
+        "$stateProvider", "$urlRouterProvider", "appSettings", "appStates",
+        function($stateProvider, $urlRouterProvider, appSettings, appStates) {
 
             $urlRouterProvider.otherwise("/index");
   

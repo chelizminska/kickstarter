@@ -1,8 +1,8 @@
-angular.module('app.routeSelector').controller("RouteRequirementsController", [
-        "$scope", RouteRequirementsController]);
+angular.module('app').controller("HomeController", [
+        "$scope", HomeController]);
         
 
-function RouteRequirementsController($scope) {
+function HomeController($scope) {
     $scope.model = {};
     $scope.serverError = "";
 }

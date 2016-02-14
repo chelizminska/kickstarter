@@ -1,4 +1,5 @@
-angular.module('app').factory("authService", ["$http", "$q", "$window", "appEvents", "$rootScope", authService]);
+angular.module('app').factory("authService",
+    ["$http", "$q", "$window", "appEvents", "$rootScope", authService]);
 
 function authService($http, $q, $window, appEvents, $rootScope) {
     var userInfo = null;

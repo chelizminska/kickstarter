@@ -5,11 +5,11 @@
             ADMINISTRATOR: "Administrator",
             USER: "User"
         }
-    }
+    };
 
     var EVENTS = {
         USER_INFO_CHANGED: "tp.userInfoChanged"        
-    }
+    };
 
     STATES = {
         HOME: "home",
@@ -18,12 +18,11 @@
         PAGE_NOT_FOUND: "404",
         FORBIDDEN: "403",
         UNAUTHORIZED: "401"
-    }
+    };
 
     var serverPath = window.location.protocol + '//' + window.location.host + '/';
 
     angular.module("app.constants", [])
-        .constant("tripSegments", TRIP_SEGMENTS)
         .constant("appStates", STATES)
         .constant("appUser", APP_USER)
         .constant("appEvents", EVENTS)

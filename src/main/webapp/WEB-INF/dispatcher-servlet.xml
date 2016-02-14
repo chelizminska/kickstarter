@@ -6,7 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-    <mvc:resources mapping="/resources/**" location="client" />
+    <mvc:resources mapping="/**" location="client" />
     <mvc:annotation-driven />
 
 
@@ -40,6 +40,7 @@
         <property name="mappingResources">
             <list>
                 <value>com/kickstarter/logic/domain/User.hbm.xml</value>
+                <value>com/kickstarter/logic/domain/Role.hbm.xml</value>
             </list>
         </property>
 
@@ -48,7 +49,7 @@
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/kickstarter" />
+        <property name="url" value="jdbc:postgresql://localhost:5432/kickstarterDb" />
         <property name="username" value="postgres" />
         <property name="password" value="123456" />
     </bean>
