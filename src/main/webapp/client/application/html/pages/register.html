@@ -12,6 +12,11 @@
                                        required xss ng-maxlength="50" />
                         </input-wrapper>
 
+                        <input-wrapper input-reference="userForm.email" label="Email">
+                            <input ng-model="user.Email" type="text" class="form-control" name="email"
+                                       required xss ng-maxlength="50" />
+                        </input-wrapper>
+
                         <input-wrapper input-reference="userForm.password" label="Password">
                             <input ng-model="user.Password" type="password" class="form-control" name="password"
                                        required xss ng-maxlength="50" />

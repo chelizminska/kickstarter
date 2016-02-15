@@ -25,7 +25,7 @@ function authService($http, $q, $window, appEvents, $rootScope) {
         register: function(registerModel) {
             var deferred = $q.defer();
 
-            $http.post("/Account/Register", registerModel).then(function(response){
+            $http.post("/account/register", registerModel).then(function(response){
                 if (response.data.success) {
                     UpdateUserInfo(response.data.data);
                     deferred.resolve(userInfo);
@@ -41,7 +41,7 @@ function authService($http, $q, $window, appEvents, $rootScope) {
         login: function(loginModel) {
             var deferred = $q.defer();
 
-            $http.post("/Account/Login", loginModel).then(function(response){
+            $http.post("/account/login", loginModel).then(function(response){
                 if (response.data.success) {
                     UpdateUserInfo(response.data.data);
                     deferred.resolve(response.data.data);
@@ -60,7 +60,7 @@ function authService($http, $q, $window, appEvents, $rootScope) {
         logoff: function () {
             var deferred = $q.defer();
 
-            $http.post("/Account/LogOff").then(function(result) {
+            $http.post("/account/logOff").then(function(result) {
                 $window.sessionStorage["userInfo"] = null;
                 userInfo = null;
                 deferred.resolve(result);

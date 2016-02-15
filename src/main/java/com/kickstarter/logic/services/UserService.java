@@ -7,12 +7,13 @@ import com.kickstarter.logic.services.exceptions.UserLoginException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
-import java.util.List;
 
 @Service
 public class UserService implements IUserService {
+
+    @Resource(name = "encryptionService")
+    private IEncryptionService encryptionService;
 
     @Resource(name = "userRepository")
     private IUserRepository userRepository;
@@ -35,7 +36,13 @@ public class UserService implements IUserService {
             throw new UserAlreadyExistsException(user.getUsername());
         }
 
-        return null;
+        String salt = encryptionService.createSalt();
+
+        user.setSalt(salt);
+        user.setPassword(encryptionService.createPasswordHash(user.getPassword(), salt));
+
+        userRepository.add(user);
+        return user;
     }
 
     @Override
@@ -45,7 +52,13 @@ public class UserService implements IUserService {
             throw new UserLoginException();
         }
 
-        return null;
+        String passwordHash = encryptionService.createPasswordHash(password, existingUser.getSalt());
+        if (existingUser.getPassword().equalsIgnoreCase(passwordHash))
+        {
+            return existingUser;
+        }
+
+        throw new UserLoginException();
     }
 
     private User getUserByName(String userName) {

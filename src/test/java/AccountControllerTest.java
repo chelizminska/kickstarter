@@ -10,8 +10,10 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.internal.matchers.Null;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import static org.mockito.Matchers.*;
 import static org.junit.Assert.*;
@@ -25,6 +27,12 @@ public class AccountControllerTest {
     @Mock
     private IUserService userService;
 
+    @Mock
+    private HttpServletRequest request;
+
+    @Mock
+    private HttpSession session;
+
     private User user;
 
     @Before
@@ -32,15 +40,22 @@ public class AccountControllerTest {
         user = new User();
 
         Mockito.when(userService.loadUserByUsername(any(String.class))).thenReturn(user);
+        Mockito.when(request.getSession()).thenReturn(session);
     }
 
     @Test
-    public void shouldLogoffUser(){
-        CustomJsonResult result = accountController.Logoff();
+    public void shouldReturnData(){
+        CustomJsonResult result = accountController.Logoff(request);
         JsonResultModel data = result.getData();
 
         assertNotNull(data);
         assertNull(data.getErrorMessage());
         assertEquals(data.getData(), true);
+    }
+
+    @Test
+    public void shouldInvalidateSession(){
+        accountController.Logoff(request);
+        Mockito.verify(session, Mockito.times(1)).invalidate();
     }
 }
