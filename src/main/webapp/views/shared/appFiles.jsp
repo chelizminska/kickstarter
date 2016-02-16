@@ -27,6 +27,9 @@
     <spring:url value="/client/application/js/directives/restrict.js" var="appRestrictDirectiveJs" />
     <script src="${appRestrictDirectiveJs}"></script>
 
+    <spring:url value="/client/application/js/directives/ks-navbar.js" var="appNavbarDirectiveJs" />
+    <script src="${appNavbarDirectiveJs}"></script>
+
     <spring:url value="/client/application/js/filters/truncate.js" var="appTruncateFilterJs" />
     <script src="${appTruncateFilterJs}"></script>
 

@@ -25,8 +25,8 @@ CREATE TABLE AppUsers
 (
   Id SERIAL,
   Email character varying(45) NOT NULL,
-  FirstName character varying(45) NOT NULL,
-  LastName character varying(45) NOT NULL,
+  FirstName character varying(45),
+  LastName character varying(45),
   Password character varying(45) NOT NULL,
   Salt character varying(45) NOT NULL,
   UserName character varying(45) NOT NULL,
@@ -41,3 +41,6 @@ WITH (
 );
 ALTER TABLE AppUsers
   OWNER TO postgres;
+
+INSERT INTO AppUsers (Email, Password, Salt, UserName, RoleId) VALUES ("admin@ks.com", 'a665937d971a3ecebf5729222962e4aa8949b5fb', '[B@2bfbac38', 'admin', 2);
+INSERT INTO AppUsers (Email, Password, Salt, UserName, RoleId) VALUES ("user@ks.com", 'a665937d971a3ecebf5729222962e4aa8949b5fb', '[B@2bfbac38', 'user', 1);
