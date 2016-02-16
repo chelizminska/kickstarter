@@ -1,6 +1,5 @@
 import com.kickstarter.controllers.AccountController;
 import com.kickstarter.controllers.tools.CustomJsonResult;
-import com.kickstarter.controllers.tools.JsonResultModel;
 import com.kickstarter.logic.domain.User;
 import com.kickstarter.logic.services.IUserService;
 
@@ -46,11 +45,10 @@ public class AccountControllerTest {
     @Test
     public void shouldReturnData(){
         CustomJsonResult result = accountController.Logoff(request);
-        JsonResultModel data = result.getData();
 
-        assertNotNull(data);
-        assertNull(data.getErrorMessage());
-        assertEquals(data.getData(), true);
+        assertNotNull(result);
+        assertNull(result.getErrorMessage());
+        assertEquals(result.getData(), true);
     }
 
     @Test

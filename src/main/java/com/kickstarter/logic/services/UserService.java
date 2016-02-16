@@ -1,6 +1,7 @@
 package com.kickstarter.logic.services;
 
-import com.kickstarter.entitiesRepositories.IUserRepository;
+import com.kickstarter.entitiesRepositories.IRepository;
+import com.kickstarter.logic.domain.Role;
 import com.kickstarter.logic.domain.User;
 import com.kickstarter.logic.services.exceptions.UserAlreadyExistsException;
 import com.kickstarter.logic.services.exceptions.UserLoginException;
@@ -16,7 +17,10 @@ public class UserService implements IUserService {
     private IEncryptionService encryptionService;
 
     @Resource(name = "userRepository")
-    private IUserRepository userRepository;
+    private IRepository<User> userRepository;
+
+    @Resource(name = "roleRepository")
+    private IRepository<Role> roleRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -40,6 +44,13 @@ public class UserService implements IUserService {
 
         user.setSalt(salt);
         user.setPassword(encryptionService.createPasswordHash(user.getPassword(), salt));
+        user.setRole(roleRepository
+                .getAll()
+                .stream()
+                .filter((Role r) -> r.getRoleName().equalsIgnoreCase(Role.UserRoleName))
+                .findFirst()
+                .get()
+        );
 
         userRepository.add(user);
         return user;
@@ -65,8 +76,8 @@ public class UserService implements IUserService {
         return userRepository
                 .getAll()
                 .stream()
-                .filter((User x) -> !x.getUsername().equalsIgnoreCase(userName))
+                .filter((User x) -> x.getUsername().equalsIgnoreCase(userName))
                 .findFirst()
-                .get();
+                .orElse(null);
     }
 }

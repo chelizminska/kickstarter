@@ -7,10 +7,10 @@
 </head>
 
   <body ng-app="app">
+    <ks-navbar></ks-navbar>
     <div>
       <div ui-view></div>
     </div>
   </body>
-
 <jsp:include page="shared/appFiles.jsp"/>
 </html>

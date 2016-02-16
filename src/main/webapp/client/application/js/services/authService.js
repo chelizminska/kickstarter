@@ -60,7 +60,7 @@ function authService($http, $q, $window, appEvents, $rootScope) {
         logoff: function () {
             var deferred = $q.defer();
 
-            $http.post("/account/logOff").then(function(result) {
+            $http.post("/account/logoff").then(function(result) {
                 $window.sessionStorage["userInfo"] = null;
                 userInfo = null;
                 deferred.resolve(result);

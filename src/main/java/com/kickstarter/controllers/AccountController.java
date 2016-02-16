@@ -28,10 +28,11 @@ public class AccountController {
         User user = new User();
         user.setUsername(model.getUserName());
         user.setEmail(model.getEmail());
-        user.setUsername(model.getPassword());
+        user.setPassword(model.getPassword());
 
         return CustomJsonResult.TryGetJsonResult(() -> {
             User registeredUser = userService.registerUser(user);
+            request.getSession().invalidate();
             authenticationService.authenticate(
                     registeredUser.getUsername(), registeredUser.getPassword(), request);
 
@@ -44,6 +45,7 @@ public class AccountController {
     public @ResponseBody CustomJsonResult Login(@RequestBody UserLoginModel model, HttpServletRequest request) {
         return CustomJsonResult.TryGetJsonResult(() -> {
             User user = userService.loginUser(model.getUsername(), model.getPassword());
+            request.getSession().invalidate();
             authenticationService.authenticate(
                     user.getUsername(),  user.getPassword(), request);
 
@@ -52,7 +54,7 @@ public class AccountController {
     }
 
 
-    @RequestMapping(value = "/logoff", method = RequestMethod.GET)
+    @RequestMapping(value = "/logoff", method = RequestMethod.POST)
     public @ResponseBody CustomJsonResult Logoff(HttpServletRequest request) {
         return CustomJsonResult.TryExecute(()->
             request.getSession().invalidate()
