@@ -1,16 +1,12 @@
 package com.kickstarter.entitiesRepositories;
 
-import org.hibernate.*;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
 import java.util.List;
 
-@Transactional
 public class EntityRepository<TEntity> extends RepositoryBase<TEntity>{
 
-    @Resource(name = "sessionFactory")
-    private SessionFactory sessionFactory;
+    @Resource(name = "dbQuery")
+    private DbQuery dbQuery;
 
     public EntityRepository(){
         super("");
@@ -22,34 +18,26 @@ public class EntityRepository<TEntity> extends RepositoryBase<TEntity>{
 
     @SuppressWarnings("unchecked")
     public TEntity getById(Integer id) {
-        return (TEntity) sessionFactory
-                .getCurrentSession()
-                .get(typeParameterClass, id);
+        return (TEntity)dbQuery.tryGetResult(
+                session -> session.get(typeParameterClass, id));
     }
 
     @SuppressWarnings("unchecked")
     public List<TEntity> getAll() {
-        return (List<TEntity>)sessionFactory
-                .getCurrentSession()
+        return (List<TEntity>)dbQuery.tryGetResult(session -> session
                 .createCriteria(typeParameterClass)
-                .list();
+                .list());
     }
 
     public void add(TEntity entity) {
-        sessionFactory
-                .getCurrentSession()
-                .save(entity);
+        dbQuery.tryExecute(session -> session.save(entity));
     }
 
     public void update(TEntity entity) {
-        sessionFactory
-                .getCurrentSession()
-                .update(entity);
+        dbQuery.tryExecute(session -> session.update(entity));
     }
 
     public void delete(TEntity entity) {
-        sessionFactory
-                .getCurrentSession()
-                .delete(entity);
+        dbQuery.tryExecute(session -> session.delete(entity));
     }
 }
