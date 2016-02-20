@@ -26,7 +26,7 @@
         <property name="salt" type="java.lang.String">
             <column name="Salt" length="45" not-null="true" />
         </property>
-        <many-to-one name="role" class="com.kickstarter.logic.domain.Role" fetch="select">
+        <many-to-one name="role" class="com.kickstarter.logic.domain.Role" fetch="join">
             <column name="RoleId" not-null="true" default="1"/>
         </many-to-one>
     </class>

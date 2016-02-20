@@ -64,11 +64,13 @@
         <security:authentication-provider user-service-ref="userDetailsService"/>
     </security:authentication-manager>
 
-    <bean id="userRepository" class="com.kickstarter.entitiesRepositories.fakes.FakeRepository">
+    <bean id="dbQuery" class="com.kickstarter.entitiesRepositories.DbQuery"/>
+
+    <bean id="userRepository" class="com.kickstarter.entitiesRepositories.EntityRepository">
         <constructor-arg type="java.lang.String" value="com.kickstarter.logic.domain.User"/>
     </bean>
 
-    <bean id="roleRepository" class="com.kickstarter.entitiesRepositories.fakes.FakeRepository">
+    <bean id="roleRepository" class="com.kickstarter.entitiesRepositories.EntityRepository">
         <constructor-arg type="java.lang.String" value="com.kickstarter.logic.domain.Role"/>
     </bean>
 
