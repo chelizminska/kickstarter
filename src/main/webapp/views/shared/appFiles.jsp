@@ -21,6 +21,9 @@
     <spring:url value="/client/application/js/controllers/RegisterController.js" var="appRegisterControllerJs" />
     <script src="${appRegisterControllerJs}"></script>
 
+    <spring:url value="/client/application/js/controllers/CreateProjectController.js" var="appCreateProjectControllerJs" />
+    <script src="${appCreateProjectControllerJs}"></script>
+
     <spring:url value="/client/application/js/directives/custom-forms.js" var="appCustomFormsDirectiveJs" />
     <script src="${appCustomFormsDirectiveJs}"></script>
 

@@ -1,68 +1,53 @@
-<nav class="navbar navbar-top hidden-xs">
+<nav class="navbar navbar-top">
+
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand">
-                <img src="/client/application/content/images/logo.png" class="brand-img" ng-click="vm.goToHome()">
-            </a>
-        </div>
-        <form class="navbar-form navbar-right">
-            <div ng-hide="vm.isAuthorized()">
-                <button type="button" class="btn btn-default navbar-btn" ng-click="vm.goToLogin()">Log in</button>
-                <button type="button" class="btn btn-default navbar-btn" ng-click="vm.goToRegister()">Sign up</button>
+
+        <div class="row row-bordered navbar-row hidden-lg hidden-md">
+            <div class="navbar-header">
+                <a class="navbar-brand" ng-click="vm.goToHome()">
+                    <img src="/client/application/content/images/logo.png" class="brand-img"></img>
+                </a>
             </div>
-            <div ng-show="vm.isAuthorized()">
-                <span class="navbar-text">Hello, {{ vm.user.username }}</span>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default" ng-click="vm.signOut()">Sign out</button>
+        </div>
 
-                    <button type="button" class="btn btn-default dropdown-toggle"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
-                    </button>
+        <div class="row row-bordered">
+            <div class="navbar-header hidden-sm hidden-xs">
+                <a class="navbar-brand" ng-click="vm.goToHome()">
+                    <img src="/client/application/content/images/logo.png" class="brand-img"></img>
+                </a>
+            </div>
 
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#" ng-click="vm.goToHome()">Home</a>
-                        </li>
-                    </ul>
+            <form class="form-inline">
+
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default">Discover</button>
+                    <button ng-click="vm.goToCreateProject()" type="button" class="btn btn-default">Start a project</button>
+                    <button type="button" class="btn btn-default hidden-md hidden-sm hidden-xs">About us</button>
                 </div>
-            </div>
-        </form>
-    </div>
-</nav>
 
-<nav class="navbar navbar-top-xs hidden-sm hidden-md hidden-lg">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollpase">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                        
-            </button>
+                <div class="input-group hidden-sm hidden-xs">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Search Projects" aria-describedby="sizing-addon2">
+                </div>
 
-            <a class="navbar-brand">
-                <img src="/Client/application/content/images/logo.png" class="brand-img" ng-click="vm.goToHome()">
-            </a>
+                <div ng-hide="vm.isAuthorized()" class="btn-group navbar-right">
+                    <a class="btn btn-primary" ng-click="vm.goToLogin()">Log in</a>
+                    <a class="btn btn-primary" ng-click="vm.goToRegister()">Sign up</a>
+                </div>
+
+                <div ng-show="vm.isAuthorized()" class="btn-group navbar-right">
+                    <a class="btn btn-primary" ng-click="vm.signOut()">Sign out</a>
+                </div>
+            </form>
         </div>
 
-        <div class="collapse navbar-collapse" id="navHeaderCollpase">
-            <div ng-hide="vm.isAuthorized()">
-                <ul class="nav navbar-nav navbar-right" data-toggle="collapse" data-target="#navHeaderCollpase">
-                    <li><a class="nav-link" ng-click="vm.goToLogin()">Log in</a></li>
-                    <li><a class="nav-link" ng-click="vm.goToRegister()">Sign up</a></li>
-                </ul>
-            </div>
-            <div ng-if="vm.isAuthorized()">
-                <ul class="nav navbar-nav navbar-right" data-toggle="collapse" data-target="#navHeaderCollpase">
-                    <li>
-                        <a href="#" class="nav-link" ng-click="vm.goToHome()">Home</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" ng-click="vm.signOut()">Sign out</a>
-                    </li>
-                </ul>
-
-            </div>
+        <div class="row hidden-lg hidden-md">
+            <form class="form-inline">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Search Projects" aria-describedby="sizing-addon2">
+                </div>
+            </form>
         </div>
     </div>
 </nav>

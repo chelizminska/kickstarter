@@ -32,6 +32,11 @@ angular.module("app")
                   url: "/register",
                   templateUrl: appSettings.pagesFolderPath + "register.html",
                   controller: "RegisterController"
+                })
+                .state(appStates.CREATE_PROJECT, {
+                    url: "/create-project",
+                    templateUrl: appSettings.pagesFolderPath + "create-project.html",
+                    controller: "CreateProjectController"
                 });
         }
     ]);
