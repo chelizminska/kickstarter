@@ -16,6 +16,7 @@ function NavBarCtrl(appStates, $state, authService, appUser){
     vm.goToRegister = goToRegister;
     vm.isAuthorized = isAuthorized;
     vm.signOut = signOut;
+    vm.goToCreateProject = goToCreateProject;
     vm.user = null;
     vm.appRoles = appUser.ROLES;
 
@@ -29,6 +30,10 @@ function NavBarCtrl(appStates, $state, authService, appUser){
 
     function goToRegister(){
         $state.go(appStates.REGISTER);
+    }
+
+    function goToCreateProject(){
+        $state.go(appStates.CREATE_PROJECT);
     }
 
     function signOut(){

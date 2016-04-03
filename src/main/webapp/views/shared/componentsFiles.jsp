@@ -1,8 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-    <spring:url value="/client/application/css/main.css" var="mainCss" />
-    <link href="${mainCss}" rel="stylesheet"/>
-
     <spring:url value="/client/components/angular/angular.js" var="angularJs" />
     <script src="${angularJs}"></script>
 

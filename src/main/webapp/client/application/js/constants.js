@@ -17,7 +17,8 @@
         LOGIN: "login",
         PAGE_NOT_FOUND: "404",
         FORBIDDEN: "403",
-        UNAUTHORIZED: "401"
+        UNAUTHORIZED: "401",
+        CREATE_PROJECT: "create-project"
     };
 
     var serverPath = window.location.protocol + '//' + window.location.host + '/';
