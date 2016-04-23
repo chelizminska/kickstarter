@@ -1,7 +1,7 @@
 <div class="container absolute-centered">
     <div class="row row-centered">
         <div class="col-md-8 col-md-offset-2">
-                <h2 class="trip-request-header">Fill registration form</h2>
+                <h2 class="trip-request-header" translate>FILL_REGISTRATION_FORM</h2>
                 <div class="server-errors">
                     <span class="error-text">{{ serverError }}</span>
                 </div>
@@ -9,20 +9,20 @@
 
                         <input-wrapper input-reference="userForm.userName" label="Name">
                             <input ng-model="user.userName" type="text" class="form-control" name="userName"
-                                       required xss ng-maxlength="50" />
+                                       required ng-maxlength="50" />
                         </input-wrapper>
 
                         <input-wrapper input-reference="userForm.email" label="Email">
                             <input ng-model="user.email" type="text" class="form-control" name="email"
-                                       required xss ng-maxlength="50" />
+                                       required ng-maxlength="50" />
                         </input-wrapper>
 
                         <input-wrapper input-reference="userForm.password" label="Password">
                             <input ng-model="user.password" type="password" class="form-control" name="password"
-                                       required xss ng-maxlength="50" />
+                                       required ng-maxlength="50" />
                         </input-wrapper>
 
-                    <button type="submit" class="btn btn-primary hr-centered" ng-disabled="isSubmitting" ng-click="register(user)">Ok</button>
+                    <button type="submit" class="btn btn-primary hr-centered" ng-disabled="isSubmitting" ng-click="register(user)" translate>OK</button>
                 </form>
         </div>
     </div>

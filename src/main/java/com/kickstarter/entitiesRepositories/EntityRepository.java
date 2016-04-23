@@ -29,8 +29,8 @@ public class EntityRepository<TEntity> extends RepositoryBase<TEntity>{
                 .list());
     }
 
-    public void add(TEntity entity) {
-        dbQuery.tryExecute(session -> session.save(entity));
+    public Integer add(TEntity entity) {
+        return (Integer) dbQuery.tryGetResult(session -> session.save(entity));
     }
 
     public void update(TEntity entity) {
