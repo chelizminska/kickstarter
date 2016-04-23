@@ -1,7 +1,7 @@
 angular.module('app').factory("authService",
-    ["$http", "$q", "$window", "appEvents", "$rootScope", authService]);
+    ["$http", "$q", "$window", "appEvents", "$rootScope", "urls", authService]);
 
-function authService($http, $q, $window, appEvents, $rootScope) {
+function authService($http, $q, $window, appEvents, $rootScope, urls) {
     var userInfo = null;
 
     function init() {
@@ -25,7 +25,7 @@ function authService($http, $q, $window, appEvents, $rootScope) {
         register: function(registerModel) {
             var deferred = $q.defer();
 
-            $http.post("/account/register", registerModel).then(function(response){
+            $http.post(url.ACCOUNT_REGISTER, registerModel).then(function(response){
                 if (response.data.success) {
                     UpdateUserInfo(response.data.data);
                     deferred.resolve(userInfo);
@@ -41,7 +41,7 @@ function authService($http, $q, $window, appEvents, $rootScope) {
         login: function(loginModel) {
             var deferred = $q.defer();
 
-            $http.post("/account/login", loginModel).then(function(response){
+            $http.post(urls.ACCOUNT_LOGIN, loginModel).then(function(response){
                 if (response.data.success) {
                     UpdateUserInfo(response.data.data);
                     deferred.resolve(response.data.data);
@@ -60,7 +60,7 @@ function authService($http, $q, $window, appEvents, $rootScope) {
         logoff: function () {
             var deferred = $q.defer();
 
-            $http.post("/account/logoff").then(function(result) {
+            $http.post(urls.ACCOUNT_LOGOFF).then(function(result) {
                 $window.sessionStorage["userInfo"] = null;
                 userInfo = null;
                 deferred.resolve(result);

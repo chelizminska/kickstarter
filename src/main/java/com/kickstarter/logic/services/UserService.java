@@ -72,7 +72,7 @@ public class UserService implements IUserService {
         throw new UserLoginException();
     }
 
-    private User getUserByName(String userName) {
+    public User getUserByName(String userName) {
         return userRepository
                 .getAll()
                 .stream()

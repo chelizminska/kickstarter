@@ -26,7 +26,7 @@ function LoginController($scope, authService, appStates, $state, router) {
                 if(router.hasRedirect()){
                     router.redirect();
                 }else{
-                    $state.go(appStates.HOME);
+                    $state.go(appStates.USER_PROJECT_LIST);
                 }
             },
             function(data) {

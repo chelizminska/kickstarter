@@ -6,7 +6,7 @@ public interface IRepository<TEntity> {
 
     TEntity getById(Integer id);
     List<TEntity> getAll();
-    void add(TEntity entity);
+    Integer add(TEntity entity);
     void update(TEntity entity);
     void delete(TEntity entity);
 }
