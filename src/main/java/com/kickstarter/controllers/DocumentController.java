@@ -17,4 +17,10 @@ public class DocumentController {
         List<User> listProject = new ArrayList<User>();
         return new ModelAndView("pdfView", "project", listProject);
     }
+
+    @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
+    public ModelAndView downloadExcel() {
+        List<User> listProject = new ArrayList<User>();
+        return new ModelAndView("excelView", "projectList", listProject);
+    }
 }
