@@ -13,7 +13,13 @@
 
     <context:component-scan base-package="com.kickstarter" />
 
+    <bean class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="order" value="1"/>
+        <property name="basename" value="views"/>
+    </bean>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="order" value="2"/>
         <property name="prefix" value="/views/" />
         <property name="suffix" value=".jsp" />
     </bean>
@@ -33,7 +39,7 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgresPlusDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.show_sql">false</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.hbm2ddl.import_files">db/postgresql/import.sql</prop>
             </props>
@@ -43,6 +49,9 @@
             <list>
                 <value>com/kickstarter/logic/domain/User.hbm.xml</value>
                 <value>com/kickstarter/logic/domain/Role.hbm.xml</value>
+                <value>com/kickstarter/logic/domain/Project.hbm.xml</value>
+                <value>com/kickstarter/logic/domain/ProjectType.hbm.xml</value>
+                <value>com/kickstarter/logic/domain/Country.hbm.xml</value>
             </list>
         </property>
 
@@ -53,7 +62,7 @@
         <property name="driverClassName" value="org.postgresql.Driver" />
         <property name="url" value="jdbc:postgresql://localhost:5432/kickstarterdb" />
         <property name="username" value="postgres" />
-        <property name="password" value="123456" />
+        <property name="password" value="1" />
     </bean>
 
     <bean id="userDetailsService" class="com.kickstarter.logic.services.UserService"/>
@@ -74,10 +83,25 @@
         <constructor-arg type="java.lang.String" value="com.kickstarter.logic.domain.Role"/>
     </bean>
 
+    <bean id="countryRepository" class="com.kickstarter.entitiesRepositories.EntityRepository">
+        <constructor-arg type="java.lang.String" value="com.kickstarter.logic.domain.Country"/>
+    </bean>
+
+    <bean id="projectTypeRepository" class="com.kickstarter.entitiesRepositories.EntityRepository">
+        <constructor-arg type="java.lang.String" value="com.kickstarter.logic.domain.ProjectType"/>
+    </bean>
+
+    <bean id="projectRepository" class="com.kickstarter.entitiesRepositories.EntityRepository">
+        <constructor-arg type="java.lang.String" value="com.kickstarter.logic.domain.Project"/>
+    </bean>
+
     <bean id="userService" class="com.kickstarter.logic.services.UserService"/>
 
     <bean id="encryptionService" class="com.kickstarter.logic.services.EncryptionService"/>
 
     <bean id="authenticationService" class="com.kickstarter.logic.services.AuthenticationService"/>
 
+    <bean id="lookupService" class="com.kickstarter.logic.services.LookupService"/>
+
+    <bean id="projectService" class="com.kickstarter.logic.services.ProjectService"/>
 </beans>

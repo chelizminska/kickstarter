@@ -20,23 +20,31 @@
             <form class="form-inline">
 
                 <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default">Discover</button>
-                    <button ng-click="vm.goToCreateProject()" type="button" class="btn btn-default">Start a project</button>
-                    <button type="button" class="btn btn-default hidden-md hidden-sm hidden-xs">About us</button>
+                    <button type="button" class="btn btn-default" translate>DISCOVER</button>
+                    <button ng-click="vm.goToCreateProject()" 
+                            type="button" 
+                            class="btn btn-default" 
+                            translate>START_PROJECT</button>
+                    <button type="button" 
+                            class="btn btn-default hidden-md hidden-sm hidden-xs" 
+                            translate>ABOUT_US</button>
                 </div>
 
                 <div class="input-group hidden-sm hidden-xs">
                     <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                    <input type="text" class="form-control" placeholder="Search Projects" aria-describedby="sizing-addon2">
+                    <input type="text" 
+                           class="form-control" 
+                           placeholder="Search Projects" 
+                           aria-describedby="sizing-addon2">
                 </div>
 
                 <div ng-hide="vm.isAuthorized()" class="btn-group navbar-right">
-                    <a class="btn btn-primary" ng-click="vm.goToLogin()">Log in</a>
-                    <a class="btn btn-primary" ng-click="vm.goToRegister()">Sign up</a>
+                    <a class="btn btn-primary" ng-click="vm.goToLogin()" translate>LOG_IN</a>
+                    <a class="btn btn-primary" ng-click="vm.goToRegister()" translate>SIGN_UP</a>
                 </div>
 
                 <div ng-show="vm.isAuthorized()" class="btn-group navbar-right">
-                    <a class="btn btn-primary" ng-click="vm.signOut()">Sign out</a>
+                    <a class="btn btn-primary" ng-click="vm.signOut()" translate>SIGN_OUT</a>
                 </div>
             </form>
         </div>
@@ -45,7 +53,10 @@
             <form class="form-inline">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                    <input type="text" class="form-control" placeholder="Search Projects" aria-describedby="sizing-addon2">
+                    <input type="text" 
+                           class="form-control" 
+                           placeholder="Search Projects" 
+                           aria-describedby="sizing-addon2">
                 </div>
             </form>
         </div>

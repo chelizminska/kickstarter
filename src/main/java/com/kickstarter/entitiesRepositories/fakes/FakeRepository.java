@@ -2,6 +2,7 @@ package com.kickstarter.entitiesRepositories.fakes;
 
 import com.kickstarter.entitiesRepositories.RepositoryBase;
 
+import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.ParameterizedType;
@@ -25,7 +26,7 @@ public class FakeRepository<TEntity> extends RepositoryBase<TEntity>{
 
     @Override
     public TEntity getById(Integer id) {
-        return null;
+        return (TEntity) dbContext.getEntities(typeParameterClass).get(id);
     }
 
     @Override
@@ -34,8 +35,8 @@ public class FakeRepository<TEntity> extends RepositoryBase<TEntity>{
     }
 
     @Override
-    public void add(TEntity entity) {
-        dbContext.addEntity(entity);
+    public Integer add(TEntity entity) {
+        return dbContext.addEntity(entity);
     }
 
     @Override

@@ -45,9 +45,9 @@
 
   .form-group{
     margin: 20px 0 20px 0;
-    height: @form-group-height;
     .form-control{
       height: @form-control-height;
+      line-height: @form-control-height;
       min-width: 160px;
     }
 
@@ -59,19 +59,21 @@
       padding-right: 15px;
     }
 
-    input{
-      border: none;
-      border-bottom: 1px solid #d9d9de;
-      border-radius: 0px;
-      font-size: 32px;
-      width: 100%;
-      background-color: transparent;
-      padding: 0 0 6px 0;
-      -webkit-box-shadow: none;
-      box-shadow: none;
+    .text-box-container{
+      input{
+        border: none;
+        border-bottom: 1px solid #d9d9de;
+        border-radius: 0px;
+        font-size: 32px;
+        width: 100%;
+        background-color: transparent;
+        padding: 0 0 6px 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
 
-      &:focus{
-        border-bottom: 1px solid black;
+        &:focus{
+          border-bottom: 1px solid black;
+        }
       }
     }
 

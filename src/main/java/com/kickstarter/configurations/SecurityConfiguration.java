@@ -28,8 +28,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "account/register", "account/login").permitAll()
-                .antMatchers("/", "/home").permitAll()
-                .antMatchers(HttpMethod.POST, "account/logoff").hasAnyRole(Role.AdminRoleName, Role.UserRoleName)
+                .antMatchers(HttpMethod.GET, "project/getAll", "/", "/home", "lookups/countries", "lookups/projectTypes").permitAll()
+                .antMatchers(HttpMethod.POST, "project/save", "account/logoff").hasAnyRole(Role.AdminRoleName, Role.UserRoleName)
+                .antMatchers(HttpMethod.GET, "project/getUserProjects", "project/get").hasAnyRole(Role.AdminRoleName, Role.UserRoleName)
                 .antMatchers("/admin/**").hasRole(Role.AdminRoleName)
                 .and().csrf().disable();
                 //.and().exceptionHandling().accessDeniedPage("/Access_Denied");
