@@ -29,6 +29,10 @@ public class ProjectService implements IProjectService {
         project.setOwner(userService.getUserByName(userName));
         project.setCountry(countryRepository.getById(projectModel.getCountryId()));
         project.setProjectType(projectTypeRepository.getById(projectModel.getProjectTypeId()));
+        project.setDescription(projectModel.getDescription());
+        project.setFundingDuration(projectModel.getFundingDuration());
+        project.setFundingGoal(projectModel.getFundingGoal());
+        project.setStartDate(projectModel.getStartDate());
 
         if(projectModel.getId() != null && projectModel.getId() > 0){
             projectRepository.update(project);
@@ -46,6 +50,10 @@ public class ProjectService implements IProjectService {
         projectModel.setName(project.getName());
         projectModel.setCountryId(project.getCountry().getId());
         projectModel.setProjectTypeId(project.getProjectType().getId());
+        projectModel.setDescription(project.getDescription());
+        projectModel.setStartDate(project.getStartDate());
+        projectModel.setFundingGoal(project.getFundingGoal());
+        projectModel.setFundingDuration(project.getFundingDuration());
 
         return projectModel;
     }
