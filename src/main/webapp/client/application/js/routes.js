@@ -56,6 +56,11 @@
                         data:{
                             authenticate: true
                         }
+                    })
+                    .state(appStates.PROJECT, {
+                        url: "/project/:projectId",
+                        templateUrl: appSettings.pagesFolderPath + "project.html",
+                        controller: "ProjectController"
                     });
             }
         ]);
