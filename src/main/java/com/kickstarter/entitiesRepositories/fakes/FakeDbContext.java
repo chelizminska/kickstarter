@@ -29,8 +29,9 @@ public class FakeDbContext {
     }
 
     @SuppressWarnings("unchecked")
-    public void addEntity(Object entity){
+    public Integer addEntity(Object entity){
         entities.add(entity);
+        return entities.indexOf(entity);
     }
 
     private void initialize(){

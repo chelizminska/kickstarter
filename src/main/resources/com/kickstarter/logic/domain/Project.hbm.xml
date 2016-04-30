@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 20 April 2010 8:33:09 PM by Hibernate Tools 3.2.5.Beta -->
+<hibernate-mapping>
+    <class name="com.kickstarter.logic.domain.Project" table="Projects">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="Name" not-null="true"/>
+        </property>
+        <many-to-one name="projectType" class="com.kickstarter.logic.domain.ProjectType" fetch="join">
+            <column name="ProjectTypeId" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="country" class="com.kickstarter.logic.domain.Country" fetch="join">
+            <column name="CountryId" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="owner" class="com.kickstarter.logic.domain.User" fetch="join">
+            <column name="Owner" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
