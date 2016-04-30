@@ -27,6 +27,12 @@
     <spring:url value="/client/application/js/config/global.js" var="appGlobalJs" />
     <script src="${appGlobalJs}"></script>
 
+    <spring:url value="/client/application/js/config/customJsonResult.js" var="appCustomJsonResultJs" />
+    <script src="${appCustomJsonResultJs}"></script>
+
+    <spring:url value="/client/application/js/config/exceptions.js" var="appExceptionsJs" />
+    <script src="${appExceptionsJs}"></script>
+
     <spring:url value="/client/application/js/config/localization.js" var="localizationJs" />
     <script src="${localizationJs}"></script>
 
@@ -62,6 +68,9 @@
 
     <spring:url value="/client/application/js/services/authService.js" var="appAuthServiceJs" />
     <script src="${appAuthServiceJs}"></script>
+
+    <spring:url value="/client/application/js/services/exceptionHandlingService.js" var="appExceptionHandlingServiceJs" />
+    <script src="${appExceptionHandlingServiceJs}"></script>
 
     <spring:url value="/client/application/js/services/imageConverter.js" var="appImageConverterServiceJs" />
     <script src="${appImageConverterServiceJs}"></script>

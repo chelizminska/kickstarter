@@ -1,40 +1,46 @@
-angular.module('app').controller("HomeController", [
-        "urls", "projectService", HomeController]);
-        
+(function(){
+    "use strict";
 
-function HomeController(urls, projectService) {
-    var vm = this;
-    var projectListReceived = false;
+    angular
+        .module('app')
+        .controller("HomeController", 
+            ["urls", "projectService", HomeController]);
+            
 
-    vm.urls = urls;
-    vm.projects = {};
-    vm.serverError = '';
-    vm.hasProjects = hasProjects;
+    function HomeController(urls, projectService) {
+        var vm = this;
+        var projectListReceived = false;
 
-    activate();
+        vm.urls = urls;
+        vm.projects = {};
+        vm.serverError = '';
+        vm.hasProjects = hasProjects;
 
-    function activate(){
-        fetchProjects();
+        activate();
+
+        function activate(){
+            fetchProjects();
+        }
+
+        function fetchProjects(){
+            projectService.getAll()
+                .then(onProjectsReceived)
+                .catch(onRequestFailed)
+                .finally(function(){
+                    projectListReceived = true;
+                })
+        }
+
+        function onProjectsReceived(response){
+            vm.projects = response.data;
+        }
+
+        function onRequestFailed(error){
+            vm.serverError = error.statusText;
+        }
+
+        function hasProjects(){
+            return (vm.projects && vm.projects.length > 0) || !projectListReceived;
+        }
     }
-
-    function fetchProjects(){
-        projectService.getAll()
-            .then(onProjectsReceived)
-            .catch(onRequestFailed)
-            .finally(function(){
-                projectListReceived = true;
-            })
-    }
-
-    function onProjectsReceived(response){
-        vm.projects = response;
-    }
-
-    function onRequestFailed(error){
-        vm.serverError = error.statusText;
-    }
-
-    function hasProjects(){
-        return (vm.projects && vm.projects.length > 0) || !projectListReceived;
-    }
-}
+})();
