@@ -1,8 +1,10 @@
 (function(){
     "use strict";
 
-    angular.module('app').controller("CreateProjectController", [
-            "urls", "projectService", "appStates", "$state", CreateProjectController]);
+    angular
+        .module('app')
+        .controller("CreateProjectController", 
+            ["urls", "projectService", "appStates", "$state", CreateProjectController]);
 
 
     function CreateProjectController(urls, projectService, appStates, $state) {
@@ -22,17 +24,12 @@
 
         function save(){
             vm.serverError = "";
-            if(vm.projectForm.$invalid){
-                angular.forEach(vm.projectForm.$error.required, function(field){
-                    field.$setTouched();
-                });
+            if(!isProjectFormValid()){
                 return;
             }
-
             if (vm.isSubmitting) {
                 return;
             }
-
             vm.isSubmitting = true;
             projectService.saveProject(vm.project)
                 .then(onSaveSuccess)
@@ -41,6 +38,16 @@
                     vm.isSubmitting = false;
                 });
         }
+
+        function isProjectFormValid(){
+        if(vm.userForm.$invalid){
+            angular.forEach(vm.userForm.$error.required, function(field){
+                field.$setTouched();
+            });
+            return false;
+        }
+        return true;
+    }
 
         function onSaveSuccess(response){
             $state.go(appStates.HOME);

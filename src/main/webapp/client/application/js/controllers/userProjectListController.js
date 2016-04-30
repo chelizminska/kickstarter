@@ -1,9 +1,10 @@
 (function(){
     "use strict";
 
-    angular.module('app').controller("UserProjectListController", [
-        "urls", "projectService", "appStates", "$state", UserProjectListController]);
-
+    angular
+        .module('app')
+        .controller("UserProjectListController", 
+            ["urls", "projectService", "appStates", "$state", UserProjectListController]);
 
     function UserProjectListController(urls, projectService, appStates, $state) {
         var vm = this;
@@ -29,8 +30,8 @@
                 })
         }
 
-        function onProjectsReceived(projectList){
-            vm.projects = projectList;
+        function onProjectsReceived(response){
+            vm.projects = response.data;
         }
 
         function onRequestFailed(error){

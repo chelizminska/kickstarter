@@ -1,9 +1,11 @@
 (function () {
     "use strict";
 
-    angular.module('app').factory('projectService', ['urls', '$http', '$q', projectService]);
+    angular
+        .module('app')
+        .factory('projectService', ['urls', '$http', projectService]);
 
-    function projectService(urls, $http, $q) {
+    function projectService(urls, $http) {
         return {
             saveProject: saveProject,
             getProject: getProject,
@@ -12,74 +14,23 @@
         }
 
         function saveProject(project){
-            var deferred = $q.defer();
-
-            $http.post(urls.PROJECT_SAVE, project).then(function(response){
-                if (response.data.success) {
-                    deferred.resolve(response.data.data);
-                }else{
-                    deferred.reject({statusText: response.data.errorMessage});
-                }
-            }, function(error){
-                deferred.reject(error);
-            });
-
-            return deferred.promise;
+            return $http.post(urls.PROJECT_SAVE, project);
         }
 
         function getProject(projectId){
-            var deferred = $q.defer();
-
-            $http({
+            return $http({
                 url: urls.PROJECT_GET,
                 method: "GET",
                 params: {projectId: projectId}
-            })
-            .then(function(response){
-                if (response.data.success) {
-                    deferred.resolve(response.data.data);
-                }else{
-                    deferred.reject({statusText: response.data.errorMessage});
-                }
-            }, function(error){
-                deferred.reject(error);
             });
-
-            return deferred.promise;
         }
 
         function getUserProjects(){
-            var deferred = $q.defer();
-
-            $http.get(urls.USER_PROJECTS)
-                .then(function(response){
-                    if (response.data.success) {
-                        deferred.resolve(response.data.data);
-                    }else{
-                        deferred.reject({statusText: response.data.errorMessage});
-                    }
-                }, function(error){
-                    deferred.reject(error);
-                });
-
-            return deferred.promise;
+            return $http.get(urls.USER_PROJECTS);
         }
 
         function getAll(){
-            var deferred = $q.defer();
-
-            $http.get(urls.PROJECTS_GET_ALL)
-                .then(function(response){
-                    if (response.data.success) {
-                        deferred.resolve(response.data.data);
-                    }else{
-                        deferred.reject({statusText: response.data.errorMessage});
-                    }
-                }, function(error){
-                    deferred.reject(error);
-                });
-
-            return deferred.promise;
+            return $http.get(urls.PROJECTS_GET_ALL);
         }
     }
 })();
