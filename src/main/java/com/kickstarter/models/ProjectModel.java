@@ -6,11 +6,13 @@ import java.util.Date;
 public class ProjectModel {
     private Integer id;
     private String name;
+    private String owner;
     private Integer countryId;
     private Integer projectTypeId;
     private String description;
-    private Date startDate;
-    private Date endDate;
+    private Integer daysToGo;
+    private Integer backers;
+    private Integer pledged;
     private Integer fundingGoal;
     private Integer fundingDuration;
 
@@ -54,14 +56,6 @@ public class ProjectModel {
         this.description = description;
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
     public Integer getFundingGoal() {
         return fundingGoal;
     }
@@ -78,10 +72,35 @@ public class ProjectModel {
         this.fundingDuration = fundingDuration;
     }
 
-    public Date getEndDate() {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(startDate);
-        cal.add(Calendar.DATE, fundingDuration);
-        return cal.getTime();
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public Integer getDaysToGo() {
+        return daysToGo;
+    }
+
+    public void setDaysToGo(Integer daysToGo) {
+        this.daysToGo = daysToGo;
+    }
+
+    public Integer getBackers() {
+        return backers;
+    }
+
+    public void setBackers(Integer backers) {
+        this.backers = backers;
+    }
+
+    public Integer getPledged() {
+        return pledged;
+    }
+
+    public void setPledged(Integer pledged) {
+        this.pledged = pledged;
     }
 }
