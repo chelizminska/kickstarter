@@ -40,8 +40,8 @@
         }
 
         function isProjectFormValid(){
-        if(vm.userForm.$invalid){
-            angular.forEach(vm.userForm.$error.required, function(field){
+        if(vm.projectForm.$invalid){
+            angular.forEach(vm.projectForm.$error.required, function(field){
                 field.$setTouched();
             });
             return false;
