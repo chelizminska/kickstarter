@@ -1,10 +1,18 @@
 package com.kickstarter.logic.domain;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class Project extends EntityBase {
     private String name;
     private User owner;
     private Country country;
     private ProjectType projectType;
+    private String description;
+    private Date startDate;
+    private Date endDate;
+    private Integer fundingGoal;
+    private Integer fundingDuration;
 
     public String getName() {
         return name;
@@ -36,5 +44,44 @@ public class Project extends EntityBase {
 
     public void setProjectType(ProjectType projectType) {
         this.projectType = projectType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Integer getFundingGoal() {
+        return fundingGoal;
+    }
+
+    public void setFundingGoal(Integer fundingGoal) {
+        this.fundingGoal = fundingGoal;
+    }
+
+    public Integer getFundingDuration() {
+        return fundingDuration;
+    }
+
+    public void setFundingDuration(Integer fundingDuration) {
+        this.fundingDuration = fundingDuration;
+    }
+
+    public Date getEndDate() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startDate);
+        cal.add(Calendar.DATE, fundingDuration);
+        return cal.getTime();
     }
 }
